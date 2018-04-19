@@ -22,6 +22,6 @@ class GoGame:
     def place_stone(self, x, y):
         validMove = False
 
-        
+
 
         return validMove
