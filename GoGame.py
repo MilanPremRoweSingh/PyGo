@@ -33,6 +33,41 @@ class GoGame:
         if (color != "w") and (color != "b"):     #if invalid color -> fail
             return numStonesRemoved
 
+        #Detech any formed enclosed areas
+        connected = True
+        chain = []
+        toVisit = [stone(x, y, color)]
+
+        for curr in toVisit:
+            pass
+
         self.board[y][x] = color
 
         return numStonesRemoved
+
+    def add_stone_to_chain(self, x, y, color, chain):
+        stone = self.get_stone(x ,y)
+
+        if stone is not None:
+            if not stone in chain:
+                chain.append(stone)
+
+
+    def get_stone(self, x, y):
+        if x < 0 or x >= self.boardSize:     #if out of bounds -> fail
+            return None
+        if y < 0 or y >= self.boardSize:     #if out of bounds -> fail
+            return None
+
+        return stone(x, y, self.board[y][x])
+
+
+class stone:
+    x = -1
+    y = -1
+    color = "e"
+
+    def __init__(self, x, y, color):
+        self.x = x
+        self.y = y
+        self.color = color
