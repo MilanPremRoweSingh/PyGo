@@ -3,8 +3,6 @@ class BoardSize:   # enum representing board sizes
 
 
 class GoGame:
-    boardSize = BoardSize.Large
-    numSquares = 0
     board = []
 
     def __init__(self, boardSize):
@@ -52,7 +50,6 @@ class GoGame:
         if stone is not None:
             if not stone in chain:
                 chain.append(stone)
-
 
     def get_stone(self, x, y):
         if x < 0 or x >= self.numSquares:     #if out of bounds -> fail

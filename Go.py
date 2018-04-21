@@ -5,7 +5,9 @@ import sys
 import pygame
 
 game = GoGame(BoardSize.Large)
+game.place_stone(1, 1, "w")
 print(game.to_string())
+
 
 gameDisplay = GoDisplay(game)
 
