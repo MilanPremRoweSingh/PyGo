@@ -33,15 +33,8 @@ class GoGame:
         if (color != "w") and (color != "b"):     #if invalid color -> fail
             return numStonesRemoved
 
-        #Detech any formed enclosed areas
-        connected = True
-        chain = []
-        toVisit = [stone(x, y, color)]
-
-        for curr in toVisit:
-            pass
-
         self.board[y][x] = color
+        numStonesRemoved = 0;   #For now we do this, will come back after graphics implemented
 
         return numStonesRemoved
 
