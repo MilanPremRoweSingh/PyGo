@@ -7,15 +7,22 @@ class GoGame:
 
     def __init__(self, boardSize):
         # Change BoardSize
-        numSquares = 9 if boardSize == BoardSize.Small else 0
-        numSquares = 13 if boardSize == BoardSize.Medium else 0
-        numSquares = 19 if boardSize == BoardSize.Large else 0
+        if boardSize == BoardSize.Small:
+            numSquares = 9
+        elif boardSize == BoardSize.Medium:
+            numSquares = 13
+        elif boardSize == BoardSize.Large:
+            numSpaures = 19
+        else:
+            numSpaures = 19     # Default to large board
 
         self.numSquares = numSquares
         for y in range(0, numSquares):
             self.board.append([])
             for x in range(0, numSquares):
                 self.board[y].append("e")
+
+        self.isBlacksTurn = True
 
     def to_string(self):
         retStr = ""
@@ -58,6 +65,16 @@ class GoGame:
             return None
 
         return Stone(x, y, self.board[y][x])
+
+    def play_on_square(self, x, y):
+        numStonesRemoved = -1
+        if self.isBlacksTurn:
+            numStonesRemoved = self.place_stone(x,y,"b")
+        else:
+            numStonesRemoved = self.place_stone(x,y,"w")
+
+        if numStonesRemoved >= 0:
+            self.isBlacksTurn = not self.isBlacksTurn
 
 
 class Stone:

@@ -4,7 +4,7 @@ from GoDisplay import GoDisplay
 import sys
 import pygame
 
-game = GoGame(BoardSize.Large)
+game = GoGame(BoardSize.Small)
 game.place_stone(1, 1, "w")
 print(game.to_string())
 

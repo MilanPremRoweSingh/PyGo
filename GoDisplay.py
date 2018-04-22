@@ -58,6 +58,10 @@ class GoDisplay:
                 # Handle Quit event
                 if event.type == pygame.QUIT:
                     sys.exit()
+                elif event.type == pygame.MOUSEBUTTONUP:
+                    gridx = math.floor((event.pos[0] - self.borderSize)/self.gridSquareSize)
+                    gridy = math.floor((event.pos[1] - self.borderSize)/self.gridSquareSize)
+                    self.game.play_on_square(gridx, gridy)
 
             # Draw board background
             self.screen.fill(self.backgroundColor)
