@@ -35,33 +35,62 @@ class GoGame:
     def place_stone(self, x, y, color):
         numStonesRemoved = -1   # -1 indicated invalid moved
 
-        if x < 0 or x >= self.numSquares:     #if out of bounds -> fail
-            return numStonesRemoved
-        if y < 0 or y >= self.numSquares:     #if out of bounds -> fail
+        if not self.is_spot_in_board(x,y):
             return numStonesRemoved
 
-        if self.board[y][x] != "e":     #if non-empty -> fail
+        if self.board[y][x] != "e":     # if non-empty -> fail
             return numStonesRemoved
 
-        if (color != "w") and (color != "b"):     #if invalid color -> fail
+        if (color != "w") and (color != "b"):     # if invalid color -> fail
             return numStonesRemoved
 
-        self.board[y][x] = color
+        self.board[y][x] = color     # Provisionally add stone to board to build chains
+
+        chain = []
+        self.build_chain(x,y,color,chain)
+
+        # Calculate liberties of chain created
+        chainLiberties = self.get_chain_liberties(chain)
+        if chainLiberties <= 0:
+            self.board[y][x] = "e" # Remove prosionally added stone if chain created has no liberites
+            return -1
+
+        # Remove stones
+
+
         numStonesRemoved = 0;   #For now we do this, will come back after graphics implemented
 
         return numStonesRemoved
 
-    def add_stone_to_chain(self, x, y, color, chain):
-        stone = self.get_stone(x ,y)
+    def build_chain(self, x, y, chainColor, chain):
+        if not self.is_spot_in_board(x,y):
+            return
 
-        if stone is not None:
-            if not stone in chain:
-                chain.append(stone)
+        stoneInChain = False
+        for stone in chain:
+            if stone.x == x and stone.y == y:
+                stoneInChain = True
+                break
+
+        if stoneInChain:
+            return
+        else:
+            chain.append(Stone(x,y,chainColor))
+            if  self.is_spot_in_board(x,y+1):
+                if self.board[y+1][x] == chainColor:
+                    self.build_chain(x,y+1,chainColor,chain)
+            if  self.is_spot_in_board(x+1,y):
+                if self.board[y][x+1] == chainColor:
+                    self.build_chain(x+1,y,chainColor,chain)
+            if  self.is_spot_in_board(x,y-1):
+                if self.board[y-1][x] == chainColor:
+                    self.build_chain(x,y-1,chainColor,chain)
+            if  self.is_spot_in_board(x-1,y):
+                if self.board[y][x-1] == chainColor:
+                    self.build_chain(x-1,y,chainColor,chain)
 
     def get_stone(self, x, y):
-        if x < 0 or x >= self.numSquares:     #if out of bounds -> fail
-            return None
-        if y < 0 or y >= self.numSquares:     #if out of bounds -> fail
+        if not self.is_spot_in_board(x,y):
             return None
 
         return Stone(x, y, self.board[y][x])
@@ -76,6 +105,38 @@ class GoGame:
         if numStonesRemoved >= 0:
             self.isBlacksTurn = not self.isBlacksTurn
 
+    def is_spot_in_board(self, x, y):
+        if x < 0 or x >= self.numSquares:     #if out of bounds -> fail
+            return False
+        if y < 0 or y >= self.numSquares:     #if out of bounds -> fail
+            return False
+        return True
+
+    def get_stone_liberties(self, stone):
+        numLiberties = 0
+        x = stone.x
+        y = stone.y
+
+        if self.is_spot_in_board(x, y + 1):
+            if self.board[y + 1][x] == "e":
+                numLiberties += 1
+        if self.is_spot_in_board(x + 1, y):
+            if self.board[y][x + 1] == "e":
+                numLiberties += 1
+        if self.is_spot_in_board(x, y - 1):
+            if self.board[y - 1][x] == "e":
+                numLiberties += 1
+        if self.is_spot_in_board(x - 1, y):
+            if self.board[y][x - 1] == "e":
+                numLiberties += 1
+
+        return numLiberties
+
+    def get_chain_liberties(self, chain):
+        chainLiberties = 0
+        for stone in chain:
+            chainLiberties += self.get_stone_liberties(stone)
+        return chainLiberties
 
 class Stone:
     x = -1
