@@ -46,19 +46,47 @@ class GoGame:
 
         self.board[y][x] = color     # Provisionally add stone to board to build chains
 
+        # Remove stones
+        adjChains = []
+        otherColor = "w" if color == "b" else "b"
+
+
         chain = []
-        self.build_chain(x,y,color,chain)
+        if self.is_spot_in_board(x, y + 1):
+            if self.board[y + 1][x] == otherColor:
+                self.build_chain(x, y + 1, otherColor, chain)
+                adjChains.append(chain)
+                chain = []
+        if self.is_spot_in_board(x + 1, y):
+            if self.board[y][x + 1] == otherColor:
+                self.build_chain(x + 1, y, otherColor, chain)
+                adjChains.append(chain)
+                chain = []
+        if self.is_spot_in_board(x, y - 1):
+            if self.board[y - 1][x] == otherColor:
+                self.build_chain(x, y - 1, otherColor, chain)
+                adjChains.append(chain)
+                chain = []
+        if self.is_spot_in_board(x - 1, y):
+            if self.board[y][x - 1] == otherColor:
+                self.build_chain(x - 1, y, otherColor, chain)
+                adjChains.append(chain)
+                chain = []
+
+        for chain in adjChains:
+            if self.get_chain_liberties(chain) <= 0:
+                for stone in chain:
+                    numStonesRemoved += 1
+                    self.remove_stone(stone)
+
+        newChain = []
+        self.build_chain(x, y, color, newChain)
 
         # Calculate liberties of chain created
-        chainLiberties = self.get_chain_liberties(chain)
+        chainLiberties = self.get_chain_liberties(newChain)
         if chainLiberties <= 0:
-            self.board[y][x] = "e" # Remove prosionally added stone if chain created has no liberites
+            self.board[y][x] = "e"  # Remove prosionally added stone if chain created has no liberites
             return -1
-
-        # Remove stones
-
-
-        numStonesRemoved = 0;   #For now we do this, will come back after graphics implemented
 
         return numStonesRemoved
 
@@ -76,16 +104,16 @@ class GoGame:
             return
         else:
             chain.append(Stone(x,y,chainColor))
-            if  self.is_spot_in_board(x,y+1):
+            if self.is_spot_in_board(x,y+1):
                 if self.board[y+1][x] == chainColor:
                     self.build_chain(x,y+1,chainColor,chain)
-            if  self.is_spot_in_board(x+1,y):
+            if self.is_spot_in_board(x+1,y):
                 if self.board[y][x+1] == chainColor:
                     self.build_chain(x+1,y,chainColor,chain)
-            if  self.is_spot_in_board(x,y-1):
+            if self.is_spot_in_board(x,y-1):
                 if self.board[y-1][x] == chainColor:
                     self.build_chain(x,y-1,chainColor,chain)
-            if  self.is_spot_in_board(x-1,y):
+            if self.is_spot_in_board(x-1,y):
                 if self.board[y][x-1] == chainColor:
                     self.build_chain(x-1,y,chainColor,chain)
 
@@ -94,6 +122,11 @@ class GoGame:
             return None
 
         return Stone(x, y, self.board[y][x])
+
+    def remove_stone(self,stone):
+        if not self.is_spot_in_board(stone.x,stone.y):
+            return None
+        self.board[stone.y][stone.x] = "e"
 
     def play_on_square(self, x, y):
         numStonesRemoved = -1
