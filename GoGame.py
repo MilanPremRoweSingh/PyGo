@@ -12,9 +12,9 @@ class GoGame:
         elif boardSize == BoardSize.Medium:
             numSquares = 13
         elif boardSize == BoardSize.Large:
-            numSpaures = 19
+            numSquares = 19
         else:
-            numSpaures = 19     # Default to large board
+            numSquares = 19     # Default to large board
 
         self.numSquares = numSquares
         for y in range(0, numSquares):
@@ -33,7 +33,7 @@ class GoGame:
         return retStr
 
     def place_stone(self, x, y, color):
-        numStonesRemoved = -1   # -1 indicated invalid moved
+        numStonesRemoved = 0   # -1 indicated invalid moved
 
         if not self.is_spot_in_board(x,y):
             return numStonesRemoved

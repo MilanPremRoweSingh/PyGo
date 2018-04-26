@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c8063cc0-1419-4554-a8cf-921534a3388a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Go.py" beforeDir="false" afterPath="$PROJECT_DIR$/Go.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GoGame.py" beforeDir="false" afterPath="$PROJECT_DIR$/GoGame.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +18,8 @@
       <file leaf-file-name="Go.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Go.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+            <state relative-caret-position="102">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -38,7 +39,7 @@
       <file leaf-file-name="GoDisplay.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GoDisplay.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
+            <state relative-caret-position="718">
               <caret line="59" column="30" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -50,8 +51,8 @@
       <file leaf-file-name="GoGame.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GoGame.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="88" column="21" selection-start-line="88" selection-start-column="21" selection-end-line="88" selection-end-column="21" />
+            <state relative-caret-position="612">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
             </state>
           </provider>
         </entry>
@@ -78,8 +79,8 @@
       <list>
         <option value="$PROJECT_DIR$/Player.py" />
         <option value="$PROJECT_DIR$/Go" />
-        <option value="$PROJECT_DIR$/Go.py" />
         <option value="$PROJECT_DIR$/GoDisplay.py" />
+        <option value="$PROJECT_DIR$/Go.py" />
         <option value="$PROJECT_DIR$/GoGame.py" />
       </list>
     </option>
@@ -217,13 +218,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/GoGame.py</url>
-          <line>90</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint suspend="NONE" type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -415,7 +409,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GoDisplay.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
+        <state relative-caret-position="718">
           <caret line="59" column="30" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -425,8 +419,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Go.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
@@ -435,8 +429,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GoGame.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="88" column="21" selection-start-line="88" selection-start-column="21" selection-end-line="88" selection-end-column="21" />
+        <state relative-caret-position="612">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
